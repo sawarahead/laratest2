@@ -9,6 +9,6 @@ class PostController extends Controller
 {
     public function index(Post $post) #アクションとインデックスの違いって何？
     {
-      return view('index')->with(['posts' => $post->get()]);
+      return view('index')->with(['posts' => $post->getPaginateByLimit()]);
     }
 }

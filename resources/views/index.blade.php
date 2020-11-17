@@ -18,5 +18,8 @@
                  </div>
              @endforeach 
          </div>
+         <div class='paginete'>
+             {{ $posts->links() }}
+         </div>
     </body>
 </html>

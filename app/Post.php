@@ -18,4 +18,10 @@ class Post extends Model
         'title',
         'body',
     ];
+    
+    public function foo($searchtext)
+    {
+        $results = Post::Where('body','LIKE',"%{$searchtext}%")->get();
+        return $results;
+    }
 }

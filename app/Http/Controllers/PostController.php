@@ -47,12 +47,10 @@ class PostController extends Controller
       return redirect('/');
     }
     
-    public function search(Post $result){
-       $dsn = 'mysql:dbname=blog; host=localhost';
-       $username= 'dbuser';
-       $password= 'db_koyama';
-       $pdo = new PDO($dsn, $username, $password);
-       $results = $pdo->prepare(" SELECT * FROM posts WHERE body LIKE '%" . $_POST["searchtext"] . "%' ");
-       $results->excecute();
+    public function search(PostRequest $request)
+    {
+       $post=new Post;
+       $foo=$post->foo($request->searchtext);
+       return redirect('/')->with(['results' => $foo]);
     }
 }

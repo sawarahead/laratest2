@@ -16,16 +16,23 @@
              <input type='submit' value='検索'>
          </form>
          <a href='/posts/create'>create</a>
-         <div class='posts'>
-             @foreach ($posts as $post)
-                 <div class='post'>
-                     <a href='posts/{{ $post->id}}'><h2 class='title'>{{ $post->title }}</h2></a>
-                     <p class='body'>{{ $post->body }}</p>
-                 </div>
-             @endforeach 
+         <div class='results'>
+            @if (isset($results))
+                {{ session('results') }}
+            @else
+                <div class='posts'>
+                    @foreach ($posts as $post)
+                        <div class='post'>
+                            <a href='posts/{{ $post->id}}'><h2 class='title'>{{ $post->title }}</h2></a>
+                            <p class='body'>{{ $post->body }}</p>
+                        </div>
+                    @endforeach 
+                </div>
+                <div class='paginete'>
+                    {{ $posts->links() }}
+                </div>
+            @endif
          </div>
-         <div class='paginete'>
-             {{ $posts->links() }}
-         </div>
+         
     </body>
 </html>

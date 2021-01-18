@@ -1,0 +1,29 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Post extends Model
+{
+    use SoftDeletes;
+    
+    public function getPaginateByLimit(int $limit_count = 10)
+    {
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
+    protected $fillable = [
+        'title',
+        'body',
+    ];
+    
+    public function getDetailsBySearchText($search_text)
+    {
+        $columns = ['id','title','body'];
+        $results = Post::Where('body','LIKE',"%{$search_text}%")->get($columns);
+        // dd($results);
+        return $results;
+    }
+}

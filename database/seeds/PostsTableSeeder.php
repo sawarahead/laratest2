@@ -14,7 +14,7 @@ class PostsTableSeeder extends Seeder
         $titles = ['記事１','記事２','記事３','記事４','記事５'];
         foreach ($titles as $title)
         {
-            DB::table('title')->insert('title')
+            DB::table('title')->insert('title');
         }
     }
 }

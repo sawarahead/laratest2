@@ -52,7 +52,7 @@ class PostController extends Controller
     public function search(PostRequest $request)
     {
         $post=new Post;
-        $titles=$post->getTitleBySearchText($request->search_text);
+        $titles=$post->getDetailsBySearchText($request->search_text);
         // dd($foo);
         return redirect('/')->with(['results' => $titles]);
     }

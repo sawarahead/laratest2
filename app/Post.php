@@ -19,9 +19,10 @@ class Post extends Model
         'body',
     ];
     
-    public function getTitleBySearchText($search_text)
+    public function getDetailsBySearchText($search_text)
     {
-        $results = Post::Where('body','LIKE',"%{$search_text}%")->get(['title']);
+        $columns = ['id','title','body'];
+        $results = Post::Where('body','LIKE',"%{$search_text}%")->get($columns);
         // dd($results);
         return $results;
     }
